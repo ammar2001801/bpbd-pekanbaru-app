@@ -28,7 +28,7 @@
     </style>
     @stack('styles')
 </head>
-<body class="font-sans antialiased bg-slate-100/80 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col selection:bg-orange-500 selection:text-white transition-colors duration-200" 
+<body class="font-sans antialiased bg-slate-100/80 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen w-full max-w-full overflow-x-hidden flex flex-col selection:bg-orange-500 selection:text-white transition-colors duration-200" 
       x-data="{ 
           mobileMenuOpen: false, 
           adminDropdownOpen: false, 
@@ -49,7 +49,7 @@
       }">
 
     <!-- ================= 1. MICRO TOPBAR (GOVERNMENT BANNER) ================= -->
-    <div class="bg-slate-950 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-800/80">
+    <div class="w-full bg-slate-950 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
             <div class="flex items-center gap-2 min-w-0">
                 <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-gradient-to-r from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/30 font-bold uppercase tracking-wider text-[9px] shrink-0">
@@ -61,7 +61,7 @@
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                     </span>
-                    <span>PUSDALOPS-PB ONLINE 24/7 &bull; STANDAR DIBI BNPB</span>
+                    <span class="truncate">PUSDALOPS-PB ONLINE 24/7 &bull; STANDAR DIBI BNPB</span>
                 </span>
             </div>
             <div class="flex items-center gap-3 text-slate-400 shrink-0">
@@ -76,17 +76,17 @@
     </div>
 
     <!-- ================= 2. MAIN MODERN NAVBAR (PRESTIGIOUS DEEP NAVY BPBD RIAU STYLE) ================= -->
-    <header class="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 shadow-md text-white transition-colors duration-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="h-20 flex items-center justify-between gap-3 lg:gap-4">
+    <header class="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800 shadow-md text-white transition-colors duration-200">
+        <div class="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6">
+            <div class="h-16 lg:h-[72px] flex items-center justify-between gap-2 xl:gap-3">
                 
-                <!-- BRAND & LOGO (SHRINK-0 & NO-WRAP PREVENTS ANY UNINTENDED OVERFLOW) -->
+                <!-- BRAND & LOGO -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('dashboard') }}" class="flex items-center gap-3 group">
-                        <img src="{{ asset('images/logo-bpbd.png') }}" alt="Logo BPBD Kota Pekanbaru" class="w-11 h-11 rounded-full object-contain shrink-0 ring-2 ring-orange-500/30 group-hover:ring-orange-500/70 group-hover:scale-105 transition-all shadow-xs">
+                    <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 group">
+                        <img src="{{ asset('images/logo-bpbd.png') }}" alt="Logo BPBD Kota Pekanbaru" class="w-9 h-9 xl:w-10 xl:h-10 rounded-full object-contain shrink-0 ring-2 ring-orange-500/30 group-hover:ring-orange-500/70 group-hover:scale-105 transition-all shadow-xs">
                         <div class="shrink-0">
                             <div class="flex items-center gap-1.5 whitespace-nowrap">
-                                <span class="font-black text-base sm:text-lg tracking-tight text-white group-hover:text-orange-400 transition-colors">
+                                <span class="font-black text-sm xl:text-base tracking-tight text-white group-hover:text-orange-400 transition-colors">
                                     SATU DATA BENCANA
                                 </span>
                                 <span class="text-[9px] font-black bg-gradient-to-r from-orange-500 to-amber-500 text-white px-1.5 py-0.5 rounded-md uppercase tracking-wider shadow-xs">PKU</span>
@@ -99,39 +99,39 @@
                 </div>
 
                 <!-- NAVIGATION LINKS (DESKTOP) -->
-                <nav class="hidden lg:flex items-center gap-1 xl:gap-1.5 text-xs font-semibold shrink-0">
+                <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1 text-[11px] xl:text-xs font-semibold shrink-0">
                     <!-- Portal Publik Beranda -->
                     <a href="{{ route('welcome') }}" 
-                       class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap text-slate-300 hover:text-orange-400 hover:bg-slate-800/80" title="Buka Portal Depan BPBD Riau Style">
-                        <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                       class="px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap text-slate-300 hover:text-orange-400 hover:bg-slate-800/80" title="Buka Portal Depan BPBD Riau Style">
+                        <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                         <span>Portal Publik</span>
                     </a>
 
                     <!-- Geoportal Dashboard -->
                     <a href="{{ route('dashboard') }}" 
-                       class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
-                        <svg class="w-4 h-4 {{ request()->routeIs('dashboard') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                       class="px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
+                        <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 {{ request()->routeIs('dashboard') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
                         <span>Geoportal</span>
                     </a>
 
                     <!-- Data Kejadian -->
                     <a href="{{ route('kejadian.index') }}" 
-                       class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('kejadian.index') || request()->routeIs('kejadian.show') || request()->routeIs('kejadian.edit') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
-                        <svg class="w-4 h-4 {{ request()->routeIs('kejadian.index') || request()->routeIs('kejadian.show') || request()->routeIs('kejadian.edit') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                       class="px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('kejadian.index') || request()->routeIs('kejadian.show') || request()->routeIs('kejadian.edit') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
+                        <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 {{ request()->routeIs('kejadian.index') || request()->routeIs('kejadian.show') || request()->routeIs('kejadian.edit') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         <span>Data Kejadian</span>
                     </a>
 
                     <!-- Rekapitulasi -->
                     <a href="{{ route('rekap.index') }}" 
-                       class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('rekap.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
-                        <svg class="w-4 h-4 {{ request()->routeIs('rekap.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                       class="px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('rekap.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
+                        <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 {{ request()->routeIs('rekap.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                         <span>Rekapitulasi</span>
                     </a>
 
                     <!-- Cetak PDF Resmi -->
                     <a href="{{ route('laporan.pdf-menu') }}" 
-                       class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('laporan.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
-                        <svg class="w-4 h-4 {{ request()->routeIs('laporan.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                       class="px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('laporan.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
+                        <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 {{ request()->routeIs('laporan.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         <span>Cetak PDF</span>
                     </a>
 
@@ -139,10 +139,10 @@
                     @if(Auth::user()->isAdmin())
                     <div class="relative" @click.away="adminDropdownOpen = false">
                         <button @click="adminDropdownOpen = !adminDropdownOpen" 
-                                class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1 whitespace-nowrap cursor-pointer {{ request()->routeIs('admin.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
-                            <svg class="w-4 h-4 {{ request()->routeIs('admin.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                class="px-2 xl:px-2.5 py-1.5 xl:py-2 rounded-xl transition-all duration-200 flex items-center gap-1 whitespace-nowrap cursor-pointer {{ request()->routeIs('admin.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 font-bold border border-orange-500/40 shadow-xs' : 'text-slate-300 hover:text-white hover:bg-slate-800/80' }}">
+                            <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0 {{ request()->routeIs('admin.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             <span>Administrasi</span>
-                            <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            <svg class="w-3 h-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
 
                         <div x-show="adminDropdownOpen" x-cloak 
@@ -168,53 +168,53 @@
                 </nav>
 
                 <!-- RIGHT CONTROLS: ACTION BUTTON, DUAL THEME SWITCH & USER PROFILE -->
-                <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                <div class="flex items-center gap-1.5 xl:gap-2 shrink-0">
                     
                     @if(Auth::user()->role !== 'pimpinan')
                     <!-- Tombol Cepat: Input Kejadian Baru (Modern Gradient with Glow) -->
                     <a href="{{ route('kejadian.create') }}" 
-                       class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:via-amber-600 hover:to-orange-700 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200 border border-orange-400/40 whitespace-nowrap">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                       class="hidden sm:inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 xl:py-2 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:via-amber-600 hover:to-orange-700 text-white font-bold text-[11px] xl:text-xs uppercase tracking-wider shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200 border border-orange-400/40 whitespace-nowrap">
+                        <svg class="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
                         <span>Input Kejadian</span>
                     </a>
                     @endif
 
-                    <!-- ULTRA-MODERN DUAL CAPSULE THEME TOGGLE -->
+                    <!-- COMPACT DUAL CAPSULE THEME TOGGLE -->
                     <button type="button" 
                             @click="toggleTheme()" 
-                            class="relative inline-flex items-center p-1 rounded-full bg-slate-900 border border-slate-700 shadow-inner cursor-pointer transition-all duration-300 hover:border-orange-400/50 hover:shadow-xs group focus:outline-hidden"
+                            class="relative inline-flex items-center p-1 rounded-full bg-slate-900 border border-slate-700 shadow-inner cursor-pointer transition-all duration-300 hover:border-orange-400/50 hover:shadow-xs group focus:outline-hidden shrink-0"
                             :title="darkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'"
                             aria-label="Ganti Tema Tampilan">
                         <!-- Sun Pill -->
-                        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold transition-all duration-300 select-none"
+                        <span class="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold transition-all duration-300 select-none"
                               :class="!darkMode ? 'bg-amber-500 text-slate-950 shadow-sm font-extrabold' : 'text-slate-400 hover:text-slate-200'">
                             <svg class="w-3.5 h-3.5 transition-transform duration-500" :class="!darkMode ? 'rotate-90 text-slate-950 scale-110' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                             </svg>
-                            <span class="hidden md:inline">Terang</span>
+                            <span class="hidden 2xl:inline">Terang</span>
                         </span>
                         <!-- Moon Pill -->
-                        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold transition-all duration-300 select-none"
+                        <span class="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold transition-all duration-300 select-none"
                               :class="darkMode ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 shadow-sm font-extrabold' : 'text-slate-400 hover:text-slate-200'">
                             <svg class="w-3.5 h-3.5 transition-transform duration-500" :class="darkMode ? '-rotate-12 text-slate-950 scale-110' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                             </svg>
-                            <span class="hidden md:inline">Gelap</span>
+                            <span class="hidden 2xl:inline">Gelap</span>
                         </span>
                     </button>
 
                     <!-- User Profile Capsule Dropdown -->
-                    <div class="relative" @click.away="userDropdownOpen = false">
+                    <div class="relative shrink-0" @click.away="userDropdownOpen = false">
                         <button @click="userDropdownOpen = !userDropdownOpen" 
-                                class="flex items-center gap-2 p-1 sm:pl-1.5 sm:pr-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-2xs">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
+                                class="flex items-center gap-1.5 p-1 sm:pl-1.5 sm:pr-2 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 transition-all duration-200 hover:scale-[1.02] active:scale-95 shadow-2xs cursor-pointer">
+                            <div class="w-7 h-7 xl:w-8 xl:h-8 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
                             </div>
-                            <div class="text-left hidden sm:block">
-                                <div class="text-xs font-bold text-white leading-tight truncate max-w-[100px]">{{ Auth::user()->name }}</div>
-                                <div class="text-[9px] text-orange-400 font-extrabold uppercase tracking-wider">{{ Auth::user()->role }}</div>
+                            <div class="text-left hidden xl:block">
+                                <div class="text-[11px] font-bold text-white leading-tight truncate max-w-[90px]">{{ Auth::user()->name }}</div>
+                                <div class="text-[9px] text-orange-400 font-extrabold uppercase tracking-wider leading-none mt-0.5">{{ Auth::user()->role }}</div>
                             </div>
-                            <svg class="w-3.5 h-3.5 text-slate-400 hidden sm:inline ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            <svg class="w-3 h-3 text-slate-400 hidden sm:inline ml-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
 
                         <div x-show="userDropdownOpen" x-cloak 

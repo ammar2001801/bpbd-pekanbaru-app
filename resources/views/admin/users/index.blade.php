@@ -35,42 +35,46 @@
 
         <!-- STATISTIK RINGKAS PENGGUNA -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex items-center justify-between">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group flex items-center justify-between">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-500 dark:to-slate-300"></div>
                 <div>
-                    <div class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Total Akun</div>
-                    <div class="text-2xl font-black text-slate-800 dark:text-white mt-1">{{ $totalUsers }}</div>
+                    <div class="text-[11px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Akun</div>
+                    <div class="text-3xl font-black text-slate-800 dark:text-white mt-1">{{ $totalUsers }}</div>
                 </div>
-                <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 group-hover:scale-110 transition-transform">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 group-hover:scale-110 transition-transform shadow-xs">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex items-center justify-between">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group flex items-center justify-between">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-rose-600 to-red-600"></div>
                 <div>
-                    <div class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Admin IT</div>
-                    <div class="text-2xl font-black text-rose-600 dark:text-rose-400 mt-1">{{ $totalAdmin }}</div>
+                    <div class="text-[11px] font-extrabold text-rose-600 dark:text-rose-400 uppercase tracking-wider">Admin IT</div>
+                    <div class="text-3xl font-black text-rose-600 dark:text-rose-400 mt-1">{{ $totalAdmin }}</div>
                 </div>
-                <div class="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/40 flex items-center justify-center text-rose-600 dark:text-rose-400 group-hover:scale-110 transition-transform">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/60 flex items-center justify-center text-rose-600 dark:text-rose-400 group-hover:scale-110 transition-transform shadow-xs">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex items-center justify-between">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group flex items-center justify-between">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-orange-500 to-amber-500"></div>
                 <div>
-                    <div class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Petugas TRC</div>
-                    <div class="text-2xl font-black text-orange-600 dark:text-orange-400 mt-1">{{ $totalPetugas }}</div>
+                    <div class="text-[11px] font-extrabold text-orange-600 dark:text-orange-400 uppercase tracking-wider">Petugas TRC</div>
+                    <div class="text-3xl font-black text-orange-600 dark:text-orange-400 mt-1">{{ $totalPetugas }}</div>
                 </div>
-                <div class="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-950/40 flex items-center justify-center text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform">
+                <div class="w-10 h-10 rounded-xl bg-orange-50 dark:bg-orange-950/60 flex items-center justify-center text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform shadow-xs">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex items-center justify-between">
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group flex items-center justify-between">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
                 <div>
-                    <div class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Pimpinan</div>
-                    <div class="text-2xl font-black text-blue-600 dark:text-blue-400 mt-1">{{ $totalPimpinan }}</div>
+                    <div class="text-[11px] font-extrabold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Pimpinan</div>
+                    <div class="text-3xl font-black text-blue-600 dark:text-blue-400 mt-1">{{ $totalPimpinan }}</div>
                 </div>
-                <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/40 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform shadow-xs">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 </div>
             </div>
