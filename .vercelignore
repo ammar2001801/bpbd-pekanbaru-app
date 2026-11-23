@@ -1,0 +1,7 @@
+.git
+.env
+.env.backup
+.phpunit.result.cache
+tests
+storage/*.key
+run_all_tests.php
