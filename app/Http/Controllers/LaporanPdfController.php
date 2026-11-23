@@ -28,24 +28,44 @@ class LaporanPdfController extends Controller
     /**
      * Cetak PDF Lembar Laporan Kejadian Tunggal (Lengkap dengan Dokumentasi Foto)
      */
+    /**
+     * Logo BPBD untuk kop surat PDF.
+     * Memakai versi JPEG karena DomPDF butuh ekstensi GD untuk gambar PNG,
+     * sedangkan JPEG bisa dirender tanpa GD (aman untuk hosting seperti Vercel).
+     */
+    private function logoBase64(): ?string
+    {
+        $jpgPath = public_path('images/logo-bpbd-pdf.jpg');
+        if (file_exists($jpgPath)) {
+            return 'data:image/jpeg;base64,' . base64_encode(file_get_contents($jpgPath));
+        }
+
+        $pngPath = public_path('images/logo-bpbd.png');
+        if (extension_loaded('gd') && file_exists($pngPath)) {
+            return 'data:image/png;base64,' . base64_encode(file_get_contents($pngPath));
+        }
+
+        return null;
+    }
+
     public function singlePdf($id)
     {
         $kejadian = Kejadian::with(['jenisKejadian', 'kecamatan', 'kelurahan', 'instansiPendukung', 'foto', 'user'])->findOrFail($id);
         $pengaturan = PengaturanInstansi::getPengaturan();
 
-        // Siapkan logo instansi dalam format base64
-        $logoBase64 = null;
-        $logoPath = public_path('images/logo-bpbd.png');
-        if (file_exists($logoPath)) {
-            $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath));
-        }
+        // Siapkan logo instansi dalam format base64 (JPEG agar tidak butuh ekstensi GD di hosting)
+        $logoBase64 = $this->logoBase64();
 
         // Siapkan foto-foto dalam format base64 agar DomPDF merender secara instan dan aman
         $fotoBase64 = [];
         foreach ($kejadian->foto as $f) {
             $fullPath = storage_path('app/public/' . $f->file_path);
             if (file_exists($fullPath)) {
-                $ext = pathinfo($fullPath, PATHINFO_EXTENSION);
+                $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
+                // Tanpa ekstensi GD (mis. di Vercel), DomPDF hanya bisa merender JPEG
+                if (! extension_loaded('gd') && ! in_array($ext, ['jpg', 'jpeg'])) {
+                    continue;
+                }
                 $data = file_get_contents($fullPath);
                 $fotoBase64[] = [
                     'src' => 'data:image/' . $ext . ';base64,' . base64_encode($data),
@@ -124,12 +144,8 @@ class LaporanPdfController extends Controller
         $totalJiwa = $daftarKejadian->sum('jiwa_terdampak');
         $totalHa = $daftarKejadian->sum('luas_terbakar_ha');
 
-        // Siapkan logo instansi dalam format base64
-        $logoBase64 = null;
-        $logoPath = public_path('images/logo-bpbd.png');
-        if (file_exists($logoPath)) {
-            $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath));
-        }
+        // Siapkan logo instansi dalam format base64 (JPEG agar tidak butuh ekstensi GD di hosting)
+        $logoBase64 = $this->logoBase64();
 
         $pdf = Pdf::loadView('pdf.rekap-periode', compact(
             'daftarKejadian',

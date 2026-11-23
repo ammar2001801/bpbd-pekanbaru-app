@@ -32,7 +32,7 @@
   "env": {
     "APP_NAME": "BPBD Kota Pekanbaru",
     "APP_ENV": "production",
-    "APP_DEBUG": "true",
+    "APP_DEBUG": "false",
     "APP_KEY": "base64:NTzKPLDkGztZ+l5F9Ir77pKLfHRTsf8FIhDPDQ1Do9U=",
     "APP_CONFIG_CACHE": "/tmp/config.php",
     "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -40,6 +40,8 @@
     "APP_ROUTES_CACHE": "/tmp/routes.php",
     "APP_SERVICES_CACHE": "/tmp/services.php",
     "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
+    "DOMPDF_TEMP_DIR": "/tmp",
+    "DOMPDF_FONT_CACHE": "/tmp/storage/fonts",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
     "LOG_CHANNEL": "stderr",

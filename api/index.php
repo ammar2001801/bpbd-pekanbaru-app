@@ -9,6 +9,7 @@ $dirs = [
     '/tmp/storage/framework/cache',
     '/tmp/storage/framework/sessions',
     '/tmp/storage/logs',
+    '/tmp/storage/fonts',
 ];
 
 foreach ($dirs as $dir) {
