@@ -3,13 +3,14 @@
 $_ENV['VERCEL'] = '1';
 $_SERVER['VERCEL'] = '1';
 
-// Buat direktori sementara di /tmp untuk penyimpanan cache, sessions, views, logs
+// Buat direktori sementara di /tmp untuk penyimpanan cache, sessions, views, logs, uploads
 $dirs = [
     '/tmp/storage/framework/views',
     '/tmp/storage/framework/cache',
     '/tmp/storage/framework/sessions',
     '/tmp/storage/logs',
     '/tmp/storage/fonts',
+    '/tmp/storage/app/public',
 ];
 
 foreach ($dirs as $dir) {

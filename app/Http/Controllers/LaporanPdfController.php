@@ -37,7 +37,10 @@ class LaporanPdfController extends Controller
     {
         $jpgPath = public_path('images/logo-bpbd-pdf.jpg');
         if (file_exists($jpgPath)) {
-            return 'data:image/jpeg;base64,' . base64_encode(file_get_contents($jpgPath));
+            $data = file_get_contents($jpgPath);
+            if (substr($data, 0, 2) === "\xFF\xD8") {
+                return 'data:image/jpeg;base64,' . base64_encode($data);
+            }
         }
 
         $pngPath = public_path('images/logo-bpbd.png');
@@ -66,31 +69,46 @@ class LaporanPdfController extends Controller
         foreach ($kejadian->foto as $f) {
             $fullPath = storage_path('app/public/' . $f->file_path);
             if (file_exists($fullPath)) {
-                $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
-                // Tanpa ekstensi GD (mis. di Vercel), DomPDF hanya bisa merender JPEG
-                if (! extension_loaded('gd') && ! in_array($ext, ['jpg', 'jpeg'])) {
-                    continue;
-                }
                 $data = file_get_contents($fullPath);
+                if (empty($data)) continue;
+
+                $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
+
+                // Tanpa ekstensi GD (mis. di Vercel), DomPDF HANYA bisa merender JPEG asli
+                if (! extension_loaded('gd')) {
+                    if (substr($data, 0, 2) !== "\xFF\xD8") {
+                        continue;
+                    }
+                }
+
+                $mime = in_array($ext, ['jpg', 'jpeg']) ? 'image/jpeg' : 'image/' . $ext;
                 $fotoBase64[] = [
-                    'src' => 'data:image/' . $ext . ';base64,' . base64_encode($data),
+                    'src' => 'data:' . $mime . ';base64,' . base64_encode($data),
                     'caption' => $f->caption ?? 'Dokumentasi penanganan di lokasi kejadian',
                 ];
             }
         }
 
-        $pdf = Pdf::loadView('pdf.kejadian-single', compact('kejadian', 'pengaturan', 'fotoBase64', 'logoBase64'))
-            ->setPaper('A4', 'portrait')
-            ->setOption([
-                'isHtml5ParserEnabled' => true,
-                'isRemoteEnabled' => true,
-                'dpi' => 120,
-                'defaultFont' => 'sans-serif',
-            ]);
+        try {
+            $pdf = Pdf::loadView('pdf.kejadian-single', compact('kejadian', 'pengaturan', 'fotoBase64', 'logoBase64'))
+                ->setPaper('A4', 'portrait')
+                ->setOption([
+                    'isHtml5ParserEnabled' => true,
+                    'isRemoteEnabled' => true,
+                    'dpi' => 120,
+                    'defaultFont' => 'sans-serif',
+                ]);
 
-        $fileName = 'Laporan-' . str_replace('/', '-', $kejadian->nomor_laporan) . '.pdf';
+            $fileName = 'Laporan-' . str_replace('/', '-', $kejadian->nomor_laporan) . '.pdf';
 
-        return $pdf->stream($fileName);
+            return $pdf->stream($fileName);
+        } catch (\Throwable $e) {
+            \Log::warning("DomPDF single export fallback triggered: " . $e->getMessage());
+            return response()->view('pdf.kejadian-single', array_merge(
+                compact('kejadian', 'pengaturan', 'fotoBase64', 'logoBase64'),
+                ['isPrintFallback' => true]
+            ))->header('Content-Type', 'text/html');
+        }
     }
 
     /**
@@ -152,28 +170,47 @@ class LaporanPdfController extends Controller
         // Siapkan logo instansi dalam format base64 (JPEG agar tidak butuh ekstensi GD di hosting)
         $logoBase64 = $this->logoBase64();
 
-        $pdf = Pdf::loadView('pdf.rekap-periode', compact(
-            'daftarKejadian',
-            'pengaturan',
-            'periodeJudul',
-            'totalKejadian',
-            'totalMeninggal',
-            'totalLuka',
-            'totalKK',
-            'totalJiwa',
-            'totalHa',
-            'logoBase64'
-        ))
-        ->setPaper('A4', 'landscape')
-        ->setOption([
-            'isHtml5ParserEnabled' => true,
-            'isRemoteEnabled' => true,
-            'dpi' => 110,
-            'defaultFont' => 'sans-serif',
-        ]);
+        try {
+            $pdf = Pdf::loadView('pdf.rekap-periode', compact(
+                'daftarKejadian',
+                'pengaturan',
+                'periodeJudul',
+                'totalKejadian',
+                'totalMeninggal',
+                'totalLuka',
+                'totalKK',
+                'totalJiwa',
+                'totalHa',
+                'logoBase64'
+            ))
+            ->setPaper('A4', 'landscape')
+            ->setOption([
+                'isHtml5ParserEnabled' => true,
+                'isRemoteEnabled' => true,
+                'dpi' => 110,
+                'defaultFont' => 'sans-serif',
+            ]);
 
-        $fileName = "Rekap-Bencana-BPBD-Pekanbaru-{$slug}.pdf";
+            $fileName = "Rekap-Bencana-BPBD-Pekanbaru-{$slug}.pdf";
 
-        return $pdf->stream($fileName);
+            return $pdf->stream($fileName);
+        } catch (\Throwable $e) {
+            \Log::warning("DomPDF rekap export fallback triggered: " . $e->getMessage());
+            return response()->view('pdf.rekap-periode', array_merge(
+                compact(
+                    'daftarKejadian',
+                    'pengaturan',
+                    'periodeJudul',
+                    'totalKejadian',
+                    'totalMeninggal',
+                    'totalLuka',
+                    'totalKK',
+                    'totalJiwa',
+                    'totalHa',
+                    'logoBase64'
+                ),
+                ['isPrintFallback' => true]
+            ))->header('Content-Type', 'text/html');
+        }
     }
 }

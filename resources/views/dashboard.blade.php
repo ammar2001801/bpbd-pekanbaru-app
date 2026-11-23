@@ -136,7 +136,7 @@
     </div>
 
     <!-- ================= 2. KARTU METRIK DAMPAK BENCANA ALA BNPB (ROLLING COUNT-UP ANIMATION) ================= -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mb-6"
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 mb-6"
          x-data="{
              counted: false,
              c1: 0, c2: 0, c3: 0, c4: 0, c5: 0, c6: 0,
@@ -179,87 +179,92 @@
          }">
         
         <!-- Total Kejadian -->
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
             <div class="flex items-center justify-between mb-2.5">
-                <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Kejadian</span>
-                <div class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all">
+                <span class="text-[10px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Kejadian</span>
+                <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 </div>
             </div>
-            <div class="text-2xl font-black text-slate-900 dark:text-white" x-text="c1">{{ $totalTahunIni }}</div>
-            <div class="mt-1 text-[10px] text-slate-400 dark:text-slate-500">
-                Hari ini: <strong class="text-slate-700 dark:text-slate-300">{{ $totalHariIni }}</strong> &bull; Bln: <strong class="text-slate-700 dark:text-slate-300">{{ $totalBulanIni }}</strong>
+            <div class="text-3xl font-black text-slate-900 dark:text-white" x-text="c1">{{ $totalTahunIni }}</div>
+            <div class="mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
+                Hari ini: <strong class="text-slate-800 dark:text-slate-200">{{ $totalHariIni }}</strong> &bull; Bln: <strong class="text-slate-800 dark:text-slate-200">{{ $totalBulanIni }}</strong>
             </div>
         </div>
 
         <!-- Korban Meninggal -->
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-600 to-rose-600"></div>
             <div class="flex items-center justify-between mb-2.5">
-                <span class="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Meninggal / Hilang</span>
-                <div class="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all">
+                <span class="text-[10px] font-extrabold text-red-600 dark:text-red-400 uppercase tracking-wider">Meninggal / Hilang</span>
+                <div class="w-8 h-8 rounded-xl bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all shadow-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 </div>
             </div>
-            <div class="text-2xl font-black text-red-600 dark:text-red-400"><span x-text="c2">{{ $totalMeninggal }}</span> <span class="text-xs font-medium text-slate-400 dark:text-slate-500">Jiwa</span></div>
-            <div class="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
+            <div class="text-3xl font-black text-red-600 dark:text-red-400"><span x-text="c2">{{ $totalMeninggal }}</span> <span class="text-xs font-semibold text-slate-400">Jiwa</span></div>
+            <div class="mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                 Korban jiwa tercatat
             </div>
         </div>
 
         <!-- Korban Luka -->
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 to-yellow-500"></div>
             <div class="flex items-center justify-between mb-2.5">
-                <span class="text-[10px] font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Korban Luka-Luka</span>
-                <div class="w-7 h-7 rounded-lg bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                <span class="text-[10px] font-extrabold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Korban Luka-Luka</span>
+                <div class="w-8 h-8 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all shadow-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </div>
             </div>
-            <div class="text-2xl font-black text-amber-600 dark:text-amber-400"><span x-text="c3">{{ $totalLuka }}</span> <span class="text-xs font-medium text-slate-400 dark:text-slate-500">Jiwa</span></div>
-            <div class="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
+            <div class="text-3xl font-black text-amber-600 dark:text-amber-400"><span x-text="c3">{{ $totalLuka }}</span> <span class="text-xs font-semibold text-slate-400">Jiwa</span></div>
+            <div class="mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                 Penanganan medis TRC
             </div>
         </div>
 
         <!-- Terdampak KK/Jiwa -->
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
             <div class="flex items-center justify-between mb-2.5">
-                <span class="text-[10px] font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider">Warga Terdampak</span>
-                <div class="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                <span class="text-[10px] font-extrabold text-blue-700 dark:text-blue-400 uppercase tracking-wider">Warga Terdampak</span>
+                <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 </div>
             </div>
-            <div class="text-2xl font-black text-blue-700 dark:text-blue-400"><span x-text="c4">{{ $totalJiwa }}</span> <span class="text-xs font-medium text-slate-400 dark:text-slate-500">Jiwa</span></div>
-            <div class="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
+            <div class="text-3xl font-black text-blue-700 dark:text-blue-400"><span x-text="c4">{{ $totalJiwa }}</span> <span class="text-xs font-semibold text-slate-400">Jiwa</span></div>
+            <div class="mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                 {{ $totalKK }} Kepala Keluarga (KK)
             </div>
         </div>
 
         <!-- Luas Karhutla -->
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-orange-500 to-amber-500"></div>
             <div class="flex items-center justify-between mb-2.5">
-                <span class="text-[10px] font-bold text-orange-700 dark:text-orange-400 uppercase tracking-wider">Luas Karhutla</span>
-                <div class="w-7 h-7 rounded-lg bg-orange-50 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-600 group-hover:text-white transition-all">
+                <span class="text-[10px] font-extrabold text-orange-700 dark:text-orange-400 uppercase tracking-wider">Luas Karhutla</span>
+                <div class="w-8 h-8 rounded-xl bg-orange-50 dark:bg-orange-950/60 text-orange-600 dark:text-orange-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-600 group-hover:text-white transition-all shadow-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
                 </div>
             </div>
-            <div class="text-2xl font-black text-orange-700 dark:text-orange-400"><span x-text="c5">{{ number_format($totalLuasKarhutla, 1) }}</span> <span class="text-xs font-medium text-slate-400 dark:text-slate-500">Ha</span></div>
-            <div class="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
+            <div class="text-3xl font-black text-orange-700 dark:text-orange-400"><span x-text="c5">{{ number_format($totalLuasKarhutla, 1) }}</span> <span class="text-xs font-semibold text-slate-400">Ha</span></div>
+            <div class="mt-1 text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                 Area lahan terbakar
             </div>
         </div>
 
         <!-- Dalam Penanganan -->
-        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-rose-200 dark:border-rose-900/60 shadow-2xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-1.5 h-full bg-rose-500"></div>
+        <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-rose-200 dark:border-rose-900/60 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-rose-600 to-red-600"></div>
             <div class="flex items-center justify-between mb-2.5">
-                <span class="text-[10px] font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">Operasi Aktif</span>
-                <div class="w-7 h-7 rounded-lg bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition-all">
+                <span class="text-[10px] font-extrabold text-rose-700 dark:text-rose-400 uppercase tracking-wider">Operasi Aktif</span>
+                <div class="w-8 h-8 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition-all shadow-xs">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 </div>
             </div>
-            <div class="text-2xl font-black text-rose-600 dark:text-rose-400"><span x-text="c6">{{ $totalDalamPenanganan }}</span> <span class="text-xs font-medium text-slate-400 dark:text-slate-500">TKP</span></div>
-            <div class="mt-1 text-[10px] text-rose-600 dark:text-rose-400 font-bold flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+            <div class="text-3xl font-black text-rose-600 dark:text-rose-400"><span x-text="c6">{{ $totalDalamPenanganan }}</span> <span class="text-xs font-semibold text-slate-400">TKP</span></div>
+            <div class="mt-1 text-[11px] text-rose-600 dark:text-rose-400 font-bold flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
                 <span>Dalam Penanganan</span>
             </div>
         </div>
@@ -487,9 +492,9 @@
                     attribution: '&copy; Esri &bull; Earthstar Geographics'
                 });
 
-                const basemapDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                const basemapDark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
                     maxZoom: 19,
-                    attribution: '&copy; CARTO'
+                    attribution: '&copy; Esri &bull; HERE'
                 });
 
                 window.currentBasemap = basemapOsm;

@@ -176,6 +176,24 @@
     </style>
 </head>
 <body>
+@if(!empty($isPrintFallback))
+    <div style="background: #0f172a; color: white; padding: 12px 20px; font-family: Arial, sans-serif; font-size: 13px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 9999; margin-bottom: 20px; border-bottom: 2px solid #ea580c;" class="no-print">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="background: #ea580c; color: white; padding: 3px 8px; border-radius: 6px; font-weight: bold; font-size: 11px;">DOKUMEN RESMI SIAP CETAK</span>
+            <span>Versi cetak resmi peramban aktif. Anda dapat langsung mencetak atau menyimpan dokumen ini sebagai file PDF (Ctrl+P).</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+            <button onclick="window.print()" style="background: #ea580c; color: white; border: none; padding: 7px 16px; border-radius: 6px; font-weight: bold; cursor: pointer;">Cetak / Simpan PDF</button>
+            <button onclick="window.history.back()" style="background: #334155; color: white; border: none; padding: 7px 12px; border-radius: 6px; cursor: pointer;">Kembali</button>
+        </div>
+    </div>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            body { margin: 0; }
+        }
+    </style>
+@endif
 
     <!-- KOP SURAT RESMI -->
     <table class="kop-table">

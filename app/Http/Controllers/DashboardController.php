@@ -210,7 +210,7 @@ class DashboardController extends Controller
                     'luas_ha' => $k->luas_terbakar_ha ? (float) $k->luas_terbakar_ha : 0,
                     'jiwa' => (int) $k->jiwa_terdampak,
                     'personel' => (int) $k->jumlah_personel,
-                    'foto_url' => $fotoFirst ? asset('storage/' . $fotoFirst->path_foto) : null,
+                    'foto_url' => $fotoFirst ? asset('storage/' . $fotoFirst->file_path) : null,
                 ];
             });
 

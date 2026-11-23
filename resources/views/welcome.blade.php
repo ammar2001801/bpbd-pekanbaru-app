@@ -584,22 +584,37 @@
                 </div>
             </div>
 
-            <!-- Filter Kategori Layer Peta Interaktif -->
-            <div class="flex items-center gap-2 mb-4 overflow-x-auto pb-2">
-                <button type="button" 
-                        onclick="filterPublicCategory('all')" 
-                        id="filterPublic_all"
-                        class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-orange-600 text-white shadow-md transition-all cursor-pointer whitespace-nowrap">
-                    Semua Bencana
-                </button>
-                @foreach($semuaJenisKejadian as $jk)
+            <!-- Filter Kategori Layer Peta Interaktif & Basemap Switcher -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <div class="flex items-center gap-2 overflow-x-auto pb-1">
                     <button type="button" 
-                            onclick="filterPublicCategory({{ $jk->id }})" 
-                            id="filterPublic_{{ $jk->id }}"
-                            class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all cursor-pointer whitespace-nowrap">
-                        {{ $jk->nama }}
+                            onclick="filterPublicCategory('all')" 
+                            id="filterPublic_all"
+                            class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-orange-600 text-white shadow-md transition-all cursor-pointer whitespace-nowrap">
+                        Semua Bencana
                     </button>
-                @endforeach
+                    @foreach($semuaJenisKejadian as $jk)
+                        <button type="button" 
+                                onclick="filterPublicCategory({{ $jk->id }})" 
+                                id="filterPublic_{{ $jk->id }}"
+                                class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all cursor-pointer whitespace-nowrap">
+                            {{ $jk->nama }}
+                        </button>
+                    @endforeach
+                </div>
+
+                <!-- Basemap Switcher (Jalan / Satelit) -->
+                <div class="inline-flex rounded-xl bg-slate-800 p-1 border border-slate-700 text-xs shrink-0 self-start sm:self-auto">
+                    <button type="button" onclick="switchPublicBasemap('osm')" id="btnPubBasemapOsm" class="px-3 py-1 rounded-lg font-bold bg-gradient-to-r from-orange-500 to-amber-500 text-white transition-all shadow-xs">
+                        Peta Jalan
+                    </button>
+                    <button type="button" onclick="switchPublicBasemap('satellite')" id="btnPubBasemapSat" class="px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white hover:bg-slate-700/60 transition-all">
+                        Citra Satelit
+                    </button>
+                    <button type="button" onclick="switchPublicBasemap('topo')" id="btnPubBasemapTopo" class="px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white hover:bg-slate-700/60 transition-all">
+                        Topografi
+                    </button>
+                </div>
             </div>
 
             <!-- Wadah Peta Leaflet -->
@@ -876,6 +891,8 @@
     <!-- Script Inisialisasi Peta Leaflet Geoportal Publik -->
     <script>
         window.publicMapMarkers = [];
+        let currentPublicBasemap = null;
+        let basemapLayers = {};
 
         document.addEventListener('DOMContentLoaded', function () {
             const rawPoints = @json($mapPoints);
@@ -887,10 +904,25 @@
             }).setView([0.5104, 101.4480], 12);
             window.publicLeafletMap = map;
 
-            // Tile basemap elegan gelap ala geoportal BNPB
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                maxZoom: 19
-            }).addTo(map);
+            // Definisi Basemap resmi & stabil tanpa batasan API Key
+            basemapLayers.osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            });
+
+            basemapLayers.satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 19,
+                attribution: '&copy; Esri &bull; Earthstar Geographics'
+            });
+
+            basemapLayers.topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 19,
+                attribution: '&copy; Esri &bull; USGS'
+            });
+
+            // Aktifkan OpenStreetMap sebagai basemap bawaan
+            currentPublicBasemap = basemapLayers.osm;
+            currentPublicBasemap.addTo(map);
 
             if (rawPoints && rawPoints.length > 0) {
                 const markerGroup = L.featureGroup();
@@ -949,6 +981,33 @@
                 map.fitBounds(markerGroup.getBounds(), { padding: [40, 40], maxZoom: 14 });
             }
         });
+
+        function switchPublicBasemap(type) {
+            const map = window.publicLeafletMap;
+            if (!map || !basemapLayers[type]) return;
+
+            if (currentPublicBasemap) {
+                map.removeLayer(currentPublicBasemap);
+            }
+            currentPublicBasemap = basemapLayers[type];
+            currentPublicBasemap.addTo(map);
+
+            // Update tombol styling
+            const btns = {
+                osm: document.getElementById('btnPubBasemapOsm'),
+                satellite: document.getElementById('btnPubBasemapSat'),
+                topo: document.getElementById('btnPubBasemapTopo')
+            };
+
+            Object.keys(btns).forEach(key => {
+                if (!btns[key]) return;
+                if (key === type) {
+                    btns[key].className = 'px-3 py-1 rounded-lg font-bold bg-gradient-to-r from-orange-500 to-amber-500 text-white transition-all shadow-xs';
+                } else {
+                    btns[key].className = 'px-3 py-1 rounded-lg font-semibold text-slate-400 hover:text-white hover:bg-slate-700/60 transition-all';
+                }
+            });
+        }
 
         function filterPublicCategory(catId) {
             const map = window.publicLeafletMap;
