@@ -196,6 +196,7 @@ class DashboardController extends Controller
                 return [
                     'id' => $k->id,
                     'nomor' => $k->nomor_laporan,
+                    'jenis_id' => $k->jenis_kejadian_id,
                     'jenis' => $k->jenisKejadian ? $k->jenisKejadian->nama : 'Bencana',
                     'warna' => $k->jenisKejadian ? ($k->jenisKejadian->warna ?? '#EA580C') : '#EA580C',
                     'tanggal' => Carbon::parse($k->tanggal_kejadian)->locale('id')->isoFormat('D MMM Y'),

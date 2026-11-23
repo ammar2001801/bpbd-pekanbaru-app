@@ -86,26 +86,25 @@
     currentSlide: 0,
     totalSlides: 3,
     timer: null,
+    activeCategory: 'all',
     init() {
         this.startAutoplay();
     },
     startAutoplay() {
+        if (this.timer) clearInterval(this.timer);
         this.timer = setInterval(() => {
             this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
         }, 6000);
     },
     setSlide(index) {
-        clearInterval(this.timer);
         this.currentSlide = index;
         this.startAutoplay();
     },
     nextSlide() {
-        clearInterval(this.timer);
         this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
         this.startAutoplay();
     },
     prevSlide() {
-        clearInterval(this.timer);
         this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
         this.startAutoplay();
     }
@@ -192,7 +191,7 @@
                         Beranda
                     </a>
                     <a href="#statistik" class="text-xs font-bold text-slate-700 hover:text-orange-600 transition-colors uppercase tracking-wider">
-                        Data & Statistik
+                        Data &amp; Statistik
                     </a>
                     <a href="#geoportal" class="text-xs font-bold text-slate-700 hover:text-orange-600 transition-colors uppercase tracking-wider flex items-center gap-1.5">
                         <span>Peta Geoportal</span>
@@ -231,7 +230,7 @@
         <!-- Menu Dropdown Mobile -->
         <div x-show="mobileMenu" x-cloak class="md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg">
             <a href="#beranda" @click="mobileMenu = false" class="block py-2 text-sm font-bold text-slate-800 hover:text-orange-600">Beranda</a>
-            <a href="#statistik" @click="mobileMenu = false" class="block py-2 text-sm font-bold text-slate-800 hover:text-orange-600">Data & Statistik</a>
+            <a href="#statistik" @click="mobileMenu = false" class="block py-2 text-sm font-bold text-slate-800 hover:text-orange-600">Data &amp; Statistik</a>
             <a href="#geoportal" @click="mobileMenu = false" class="block py-2 text-sm font-bold text-slate-800 hover:text-orange-600">Peta Geoportal</a>
             <a href="#laporan-terkini" @click="mobileMenu = false" class="block py-2 text-sm font-bold text-slate-800 hover:text-orange-600">Laporan Terkini</a>
             <a href="#layanan" @click="mobileMenu = false" class="block py-2 text-sm font-bold text-slate-800 hover:text-orange-600">Layanan 112</a>
@@ -246,58 +245,59 @@
     </header>
 
     <!-- ================= 3. DYNAMIC HERO CAROUSEL / SLIDER (GERAK-GERAK BANNER UTAMA) ================= -->
-    <section id="beranda" class="relative overflow-hidden bg-slate-950 text-white min-h-[520px] sm:min-h-[580px] lg:min-h-[620px] flex items-center">
+    <section id="beranda" class="relative overflow-hidden bg-slate-950 text-white min-h-[580px] sm:min-h-[620px] lg:min-h-[650px] flex items-center">
         
-        <!-- Ambient Background Mesh -->
-        <div class="absolute inset-0 bg-radial from-slate-900/60 via-slate-950 to-slate-950 pointer-events-none"></div>
-        <div class="absolute -top-24 -right-24 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Ambient Grid Background -->
+        <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: radial-gradient(rgba(234, 88, 12, 0.4) 1px, transparent 1px); background-size: 28px 28px;"></div>
+        <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- SLIDE 1: Kesiapsiagaan TRC & Hidrometeorologi -->
-        <div x-show="currentSlide === 0" 
-             x-transition:enter="transition ease-out duration-700 transform"
-             x-transition:enter-start="opacity-0 translate-x-8"
-             x-transition:enter-end="opacity-100 translate-x-0"
-             x-transition:leave="transition ease-in duration-300 transform absolute inset-0"
-             x-transition:leave-start="opacity-100 translate-x-0"
-             x-transition:leave-end="opacity-0 -translate-x-8"
-             class="w-full py-16 sm:py-24 relative z-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- SLIDE 1: Kesiapsiagaan TRC & Pusdalops -->
+        <div class="absolute inset-0 w-full h-full flex items-center transition-all duration-700 ease-in-out"
+             :class="currentSlide === 0 ? 'opacity-100 translate-x-0 z-10 pointer-events-auto' : 'opacity-0 translate-x-12 z-0 pointer-events-none'">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     <div class="lg:col-span-8">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/30 text-xs font-bold uppercase tracking-wider mb-5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/30 text-xs font-bold uppercase tracking-wider mb-4">
                             <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
                             <span>SIAGA PENUH 24/7 PUSDALOPS-PB</span>
                         </div>
                         <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
                             TANGGAP, TANGKAS, &amp; TANGGUH MENGHADAPI BENCANA
                         </h2>
-                        <p class="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
-                            Badan Penanggulangan Bencana Daerah (BPBD) Kota Pekanbaru bersiaga penuh melindungi masyarakat melalui pemantauan geospasial real-time, posko komando terpadu, dan respon cepat Tim Reaksi Cepat (TRC).
+                        <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+                            Badan Penanggulangan Bencana Daerah (BPBD) Kota Pekanbaru bersiaga penuh melindungi masyarakat melalui posko komando terpadu, pemantauan spasial, dan respon cepat Tim Reaksi Cepat (TRC).
                         </p>
                         <div class="mt-8 flex flex-wrap items-center gap-3.5">
-                            <a href="#geoportal" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-0.5 transition-all duration-200">
+                            <a href="#geoportal" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/30 hover:scale-105 transition-all duration-200">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
                                 <span>Jelajahi Peta Geoportal</span>
                             </a>
-                            <button type="button" @click="sosModal = true" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-xs uppercase tracking-wider border border-white/20 hover:border-white/40 shadow-sm transition-all duration-200">
+                            <button type="button" @click="sosModal = true" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider border border-white/20 hover:border-white/40 shadow-sm transition-all duration-200">
                                 <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                                 <span>Hubungi Call Center 112</span>
                             </button>
                         </div>
                     </div>
                     <div class="lg:col-span-4 hidden lg:flex justify-center">
-                        <div class="relative">
-                            <div class="w-72 h-72 rounded-full border border-orange-500/20 flex items-center justify-center animate-pulse">
-                                <div class="w-56 h-56 rounded-full border border-orange-500/40 flex items-center justify-center">
-                                    <img src="{{ asset('images/logo-bpbd.png') }}" alt="Lambang BPBD" class="w-40 h-40 object-contain rounded-full drop-shadow-2xl">
-                                </div>
+                        <div class="bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-md p-6 rounded-3xl border border-orange-500/30 shadow-2xl max-w-sm w-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[11px] font-bold text-orange-400 uppercase tracking-wider">Status Operasi TRC</span>
+                                <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-black border border-emerald-500/40">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                    SIAGA 1 AKTIF
+                                </span>
                             </div>
-                            <div class="absolute -bottom-2 -right-2 bg-slate-900/90 backdrop-blur-md border border-orange-500/40 rounded-2xl p-3 shadow-xl">
-                                <div class="text-[10px] uppercase font-bold text-orange-400">Status Operasi</div>
-                                <div class="text-xs font-black text-white flex items-center gap-1.5 mt-0.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                    <span>PUSDALOPS TERKENDALI</span>
+                            <div class="text-3xl font-black text-white">{{ $totalPersonelTRC > 0 ? $totalPersonelTRC : 45 }} <span class="text-sm font-normal text-slate-400">Personel</span></div>
+                            <p class="text-xs text-slate-300 mt-1">Siaga di Posko Induk TRC BPBD Kota Pekanbaru (3 Shift Operasional).</p>
+                            <div class="mt-4 pt-4 border-t border-slate-800 space-y-2 text-xs">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Pusat Data:</span>
+                                    <span class="font-bold text-white">PUSDALOPS-PB</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Waktu Respon:</span>
+                                    <span class="font-bold text-orange-400">&le; 15 Menit TRC</span>
                                 </div>
                             </div>
                         </div>
@@ -306,47 +306,50 @@
             </div>
         </div>
 
-        <!-- SLIDE 2: Patroli Terpadu Karhutla & Riau Bebas Asap -->
-        <div x-show="currentSlide === 1" 
-             x-transition:enter="transition ease-out duration-700 transform"
-             x-transition:enter-start="opacity-0 translate-x-8"
-             x-transition:enter-end="opacity-100 translate-x-0"
-             x-transition:leave="transition ease-in duration-300 transform absolute inset-0"
-             x-transition:leave-start="opacity-100 translate-x-0"
-             x-transition:leave-end="opacity-0 -translate-x-8"
-             class="w-full py-16 sm:py-24 relative z-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- SLIDE 2: Patroli Terpadu Karhutla Riau -->
+        <div class="absolute inset-0 w-full h-full flex items-center transition-all duration-700 ease-in-out"
+             :class="currentSlide === 1 ? 'opacity-100 translate-x-0 z-10 pointer-events-auto' : 'opacity-0 translate-x-12 z-0 pointer-events-none'">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     <div class="lg:col-span-8">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30 text-xs font-bold uppercase tracking-wider mb-5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/15 text-rose-400 border border-rose-500/30 text-xs font-bold uppercase tracking-wider mb-4">
                             <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
-                            <span>SATGAS TERPADU KARHUTLA PROVINSI RIAU</span>
+                            <span>SATGAS TERPADU KARHUTLA RIAU</span>
                         </div>
                         <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                            PATROLI GEOSPASIAL &amp; PEMADAMAN LAHAN GAMBUT
+                            PATROLI GEOSPASIAL &amp; PENCEGAHAN KARHUTLA
                         </h2>
-                        <p class="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+                        <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
                             Pencegahan dan pengendalian kebakaran hutan dan lahan secara terpadu melalui verifikasi titik panas (hotspot), pembasahan embung, dan respon pemadaman darat di 15 kecamatan Kota Pekanbaru.
                         </p>
                         <div class="mt-8 flex flex-wrap items-center gap-3.5">
-                            <a href="#geoportal" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-rose-500/30 hover:shadow-xl hover:shadow-rose-500/40 hover:-translate-y-0.5 transition-all duration-200">
+                            <a href="#geoportal" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-rose-500/30 hover:scale-105 transition-all duration-200">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <span>Pantau Titik Kejadian</span>
                             </a>
-                            <a href="#statistik" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-xs uppercase tracking-wider border border-white/20 hover:border-white/40 shadow-sm transition-all duration-200">
+                            <a href="#statistik" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider border border-white/20 hover:border-white/40 shadow-sm transition-all duration-200">
                                 <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                                 <span>Rekapitulasi Luas Pemadaman</span>
                             </a>
                         </div>
                     </div>
                     <div class="lg:col-span-4 hidden lg:flex justify-center">
-                        <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-6 rounded-3xl border border-rose-500/30 shadow-2xl max-w-sm w-full">
-                            <div class="text-xs font-bold text-rose-400 uppercase tracking-wider mb-2">Satgas Karhutla Kota</div>
-                            <div class="text-3xl font-black text-white">{{ number_format($totalLuasKarhutla, 1, ',', '.') }} <span class="text-base font-normal text-slate-400">Hektar</span></div>
-                            <p class="text-xs text-slate-400 mt-1">Total area terbakar tertangani dan berhasil dipadamkan Tim Reaksi Cepat.</p>
-                            <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
-                                <span class="text-slate-400">Kejadian Terkendali:</span>
-                                <span class="font-bold text-emerald-400">{{ $totalKarhutla }} Lokasi</span>
+                        <div class="bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-md p-6 rounded-3xl border border-rose-500/30 shadow-2xl max-w-sm w-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[11px] font-bold text-rose-400 uppercase tracking-wider">Satgas Karhutla Kota</span>
+                                <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[10px] font-bold border border-rose-500/40">Gambut Riau</span>
+                            </div>
+                            <div class="text-3xl font-black text-white">{{ number_format($totalLuasKarhutla, 1, ',', '.') }} <span class="text-sm font-normal text-slate-400">Hektar</span></div>
+                            <p class="text-xs text-slate-300 mt-1">Total area terbakar tertangani dan berhasil dipadamkan Tim Reaksi Cepat.</p>
+                            <div class="mt-4 pt-4 border-t border-slate-800 space-y-2 text-xs">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Lokasi Terkendali:</span>
+                                    <span class="font-bold text-emerald-400">{{ $totalKarhutla }} Titik</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Patroli Darat:</span>
+                                    <span class="font-bold text-rose-400">Rutin Tiap Hari</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -354,53 +357,56 @@
             </div>
         </div>
 
-        <!-- SLIDE 3: Standarisasi Data DIBI BNPB -->
-        <div x-show="currentSlide === 2" 
-             x-transition:enter="transition ease-out duration-700 transform"
-             x-transition:enter-start="opacity-0 translate-x-8"
-             x-transition:enter-end="opacity-100 translate-x-0"
-             x-transition:leave="transition ease-in duration-300 transform absolute inset-0"
-             x-transition:leave-start="opacity-100 translate-x-0"
-             x-transition:leave-end="opacity-0 -translate-x-8"
-             class="w-full py-16 sm:py-24 relative z-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- SLIDE 3: Satu Data Bencana & Standar DIBI BNPB -->
+        <div class="absolute inset-0 w-full h-full flex items-center transition-all duration-700 ease-in-out"
+             :class="currentSlide === 2 ? 'opacity-100 translate-x-0 z-10 pointer-events-auto' : 'opacity-0 translate-x-12 z-0 pointer-events-none'">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     <div class="lg:col-span-8">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 text-xs font-bold uppercase tracking-wider mb-5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 text-xs font-bold uppercase tracking-wider mb-4">
                             <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
                             <span>STANDARISASI DATA DIBI BNPB</span>
                         </div>
                         <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
                             PORTAL SATU DATA BENCANA &amp; DOKUMEN RESMI
                         </h2>
-                        <p class="mt-4 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+                        <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
                             Integrasi pencatatan kejadian bencana, dampak kerusakan infrastruktur, pengungsian korban jiwa, serta penerbitan format berita acara resmi penanggulangan bencana daerah.
                         </p>
                         <div class="mt-8 flex flex-wrap items-center gap-3.5">
                             @auth
-                                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+                                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 hover:scale-105 transition-all duration-200">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                                     <span>Buka Dashboard Petugas</span>
                                 </a>
                             @else
-                                <a href="{{ route('login') }}" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+                                <a href="{{ route('login') }}" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 hover:scale-105 transition-all duration-200">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
                                     <span>Masuk ke Sistem Pusdalops</span>
                                 </a>
                             @endauth
-                            <a href="#geoportal" class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-xs uppercase tracking-wider border border-white/20 hover:border-white/40 shadow-sm transition-all duration-200">
+                            <a href="#geoportal" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-white font-extrabold text-xs uppercase tracking-wider border border-white/20 hover:border-white/40 shadow-sm transition-all duration-200">
                                 <span>Lihat Peta Sebaran Spasial</span>
                             </a>
                         </div>
                     </div>
                     <div class="lg:col-span-4 hidden lg:flex justify-center">
-                        <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-6 rounded-3xl border border-blue-500/30 shadow-2xl max-w-sm w-full">
-                            <div class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">Total Kejadian Terdata</div>
-                            <div class="text-3xl font-black text-white">{{ $totalKejadian }} <span class="text-base font-normal text-slate-400">Laporan</span></div>
-                            <p class="text-xs text-slate-400 mt-1">Tersebar di 15 Kecamatan dan terdokumentasi lengkap dalam basis data geospasial.</p>
-                            <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
-                                <span class="text-slate-400">Status Selesai:</span>
-                                <span class="font-bold text-emerald-400">{{ $totalSelesai }} Kejadian</span>
+                        <div class="bg-gradient-to-br from-slate-900/95 to-slate-950/95 backdrop-blur-md p-6 rounded-3xl border border-blue-500/30 shadow-2xl max-w-sm w-full">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-[11px] font-bold text-blue-400 uppercase tracking-wider">Total Terdata</span>
+                                <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px] font-bold border border-blue-500/40">15 Kecamatan</span>
+                            </div>
+                            <div class="text-3xl font-black text-white">{{ $totalKejadian }} <span class="text-sm font-normal text-slate-400">Laporan</span></div>
+                            <p class="text-xs text-slate-300 mt-1">Tersebar di 15 Kecamatan dan terdokumentasi lengkap dalam basis data geospasial.</p>
+                            <div class="mt-4 pt-4 border-t border-slate-800 space-y-2 text-xs">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Status Selesai:</span>
+                                    <span class="font-bold text-emerald-400">{{ $totalSelesai }} Kejadian</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Format Cetak:</span>
+                                    <span class="font-bold text-blue-400">Standar DIBI BNPB</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -409,25 +415,25 @@
         </div>
 
         <!-- Navigasi Panah Slider (Kiri & Kanan) -->
-        <button type="button" @click="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110">
+        <button type="button" @click="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer shadow-lg">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <button type="button" @click="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900 text-white border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110">
+        <button type="button" @click="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer shadow-lg">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
         </button>
 
-        <!-- Indikator Dots & Progress Bar di Bawah -->
+        <!-- Indikator Dots di Bawah Slider -->
         <div class="absolute bottom-6 left-0 right-0 z-20 flex flex-col items-center gap-3">
             <div class="flex items-center gap-2.5">
-                <button type="button" @click="setSlide(0)" class="h-2 rounded-full transition-all duration-300" :class="currentSlide === 0 ? 'w-8 bg-orange-500' : 'w-2.5 bg-slate-600 hover:bg-slate-400'"></button>
-                <button type="button" @click="setSlide(1)" class="h-2 rounded-full transition-all duration-300" :class="currentSlide === 1 ? 'w-8 bg-rose-500' : 'w-2.5 bg-slate-600 hover:bg-slate-400'"></button>
-                <button type="button" @click="setSlide(2)" class="h-2 rounded-full transition-all duration-300" :class="currentSlide === 2 ? 'w-8 bg-blue-500' : 'w-2.5 bg-slate-600 hover:bg-slate-400'"></button>
+                <button type="button" @click="setSlide(0)" class="h-2 rounded-full transition-all duration-300 cursor-pointer" :class="currentSlide === 0 ? 'w-8 bg-orange-500' : 'w-2.5 bg-slate-600 hover:bg-slate-400'"></button>
+                <button type="button" @click="setSlide(1)" class="h-2 rounded-full transition-all duration-300 cursor-pointer" :class="currentSlide === 1 ? 'w-8 bg-rose-500' : 'w-2.5 bg-slate-600 hover:bg-slate-400'"></button>
+                <button type="button" @click="setSlide(2)" class="h-2 rounded-full transition-all duration-300 cursor-pointer" :class="currentSlide === 2 ? 'w-8 bg-blue-500' : 'w-2.5 bg-slate-600 hover:bg-slate-400'"></button>
             </div>
         </div>
 
         <!-- Garis Countdown Timer di Ujung Bawah Slider -->
         <div class="absolute bottom-0 left-0 right-0 h-1 bg-slate-900 z-20">
-            <div class="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-rose-500 slider-progress-bar"></div>
+            <div class="h-full bg-gradient-to-r from-orange-500 via-amber-400 to-rose-500 slider-progress-bar" :key="currentSlide"></div>
         </div>
     </section>
 
@@ -552,7 +558,7 @@
     <section id="geoportal" class="py-16 bg-slate-900 text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/30 text-xs font-bold uppercase tracking-wider mb-2">
                         <span class="w-2 h-2 rounded-full bg-orange-400 animate-ping"></span>
@@ -566,7 +572,7 @@
                     </p>
                 </div>
 
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 flex-wrap">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300">
                         <span class="w-2.5 h-2.5 rounded-full bg-orange-500 radar-pulse-dot"></span>
                         <span>Dalam Penanganan</span>
@@ -576,6 +582,24 @@
                         <span>Selesai / Terkendali</span>
                     </span>
                 </div>
+            </div>
+
+            <!-- Filter Kategori Layer Peta Interaktif -->
+            <div class="flex items-center gap-2 mb-4 overflow-x-auto pb-2">
+                <button type="button" 
+                        onclick="filterPublicCategory('all')" 
+                        id="filterPublic_all"
+                        class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-orange-600 text-white shadow-md transition-all cursor-pointer whitespace-nowrap">
+                    Semua Bencana
+                </button>
+                @foreach($semuaJenisKejadian as $jk)
+                    <button type="button" 
+                            onclick="filterPublicCategory({{ $jk->id }})" 
+                            id="filterPublic_{{ $jk->id }}"
+                            class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all cursor-pointer whitespace-nowrap">
+                        {{ $jk->nama }}
+                    </button>
+                @endforeach
             </div>
 
             <!-- Wadah Peta Leaflet -->
@@ -790,18 +814,18 @@
     <div class="fixed bottom-6 right-6 z-50">
         <button type="button" 
                 @click="sosModal = true" 
-                class="relative group flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-orange-600 to-rose-600 text-white shadow-2xl animate-sos-glow hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer">
+                class="relative group flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-orange-600 via-rose-600 to-red-600 text-white shadow-2xl animate-sos-glow hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-white/20">
             
             <!-- Concentric Pulsing Wave Rings -->
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-60"></span>
-            
-            <!-- Phone / Emergency Icon -->
-            <svg class="w-7 h-7 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            
-            <!-- Tooltip Pill -->
-            <span class="absolute right-full mr-3 bg-slate-950 text-white text-[11px] font-bold uppercase tracking-wider py-1.5 px-3 rounded-xl border border-slate-700 shadow-xl pointer-events-none whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:block">
-                Panggilan Darurat 112
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
             </span>
+            
+            <!-- Phone Icon -->
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            
+            <span class="text-xs font-black uppercase tracking-wider pr-1">CALL 112</span>
         </button>
     </div>
 
@@ -841,7 +865,7 @@
             </div>
 
             <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
-                <button type="button" @click="sosModal = false" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">
+                <button type="button" @click="sosModal = false" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 cursor-pointer">
                     Tutup
                 </button>
             </div>
@@ -851,6 +875,8 @@
 
     <!-- Script Inisialisasi Peta Leaflet Geoportal Publik -->
     <script>
+        window.publicMapMarkers = [];
+
         document.addEventListener('DOMContentLoaded', function () {
             const rawPoints = @json($mapPoints);
             
@@ -859,6 +885,7 @@
                 scrollWheelZoom: false,
                 attributionControl: false
             }).setView([0.5104, 101.4480], 12);
+            window.publicLeafletMap = map;
 
             // Tile basemap elegan gelap ala geoportal BNPB
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -912,11 +939,42 @@
 
                     marker.bindPopup(popupContent);
                     markerGroup.addLayer(marker);
+
+                    window.publicMapMarkers.push({
+                        marker: marker,
+                        jenis_id: p.jenis_id
+                    });
                 });
 
                 map.fitBounds(markerGroup.getBounds(), { padding: [40, 40], maxZoom: 14 });
             }
         });
+
+        function filterPublicCategory(catId) {
+            const map = window.publicLeafletMap;
+            if (!map || !window.publicMapMarkers) return;
+
+            window.publicMapMarkers.forEach(item => {
+                if (catId === 'all' || item.jenis_id == catId) {
+                    if (!map.hasLayer(item.marker)) {
+                        item.marker.addTo(map);
+                    }
+                } else {
+                    if (map.hasLayer(item.marker)) {
+                        map.removeLayer(item.marker);
+                    }
+                }
+            });
+
+            // Update tab styles
+            document.querySelectorAll('[id^="filterPublic_"]').forEach(btn => {
+                btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all cursor-pointer whitespace-nowrap';
+            });
+            const activeBtn = document.getElementById('filterPublic_' + catId);
+            if (activeBtn) {
+                activeBtn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-orange-600 text-white shadow-md transition-all cursor-pointer whitespace-nowrap';
+            }
+        }
     </script>
 </body>
 </html>
