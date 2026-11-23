@@ -50,7 +50,12 @@ class LaporanPdfController extends Controller
 
     public function singlePdf($id)
     {
-        $kejadian = Kejadian::with(['jenisKejadian', 'kecamatan', 'kelurahan', 'instansiPendukung', 'foto', 'user'])->findOrFail($id);
+        $kejadian = Kejadian::with(['jenisKejadian', 'kecamatan', 'kelurahan', 'instansiPendukung', 'foto', 'user'])->find($id);
+
+        if (! $kejadian) {
+            return redirect()->route('laporan.pdf-menu')->with('error', "Data laporan kejadian #{$id} tidak ditemukan. Silakan pilih laporan dari daftar berikut.");
+        }
+
         $pengaturan = PengaturanInstansi::getPengaturan();
 
         // Siapkan logo instansi dalam format base64 (JPEG agar tidak butuh ekstensi GD di hosting)
