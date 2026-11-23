@@ -280,14 +280,28 @@
         document.addEventListener('DOMContentLoaded', function() {
             const lat = {{ $kejadian->latitude ?? 0.5071 }};
             const lng = {{ $kejadian->longitude ?? 101.4478 }};
+            const color = '{{ $kejadian->jenisKejadian->warna ?? "#ea580c" }}';
 
             const map = L.map('detailMap').setView([lat, lng], 14);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
 
-            const marker = L.marker([lat, lng]).addTo(map);
-            marker.bindPopup("<b>{{ $kejadian->nomor_laporan }}</b><br>{{ $kejadian->lokasi_detail }}").openPopup();
+            const pulsedIcon = L.divIcon({
+                className: 'custom-pulsed-icon',
+                html: `
+                    <div style="position: relative; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                        <div style="position: absolute; width: 28px; height: 28px; border-radius: 50%; background-color: ${color}; opacity: 0.4; animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
+                        <div style="position: relative; width: 16px; height: 16px; border-radius: 50%; background-color: ${color}; border: 2.5px solid #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.4);"></div>
+                    </div>
+                `,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15],
+                popupAnchor: [0, -16]
+            });
+
+            const marker = L.marker([lat, lng], { icon: pulsedIcon }).addTo(map);
+            marker.bindPopup("<b>{{ $kejadian->nomor_laporan }}</b><br><span style='color: " + color + "; font-weight: bold;'>{{ $kejadian->jenisKejadian->nama }}</span><br>{{ addslashes($kejadian->lokasi_detail) }}").openPopup();
         });
     </script>
     @endpush

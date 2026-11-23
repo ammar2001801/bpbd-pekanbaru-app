@@ -33,6 +33,7 @@
           mobileMenuOpen: false, 
           adminDropdownOpen: false, 
           userDropdownOpen: false,
+          sosModal: false,
           darkMode: document.documentElement.classList.contains('dark'),
           toggleTheme() {
               this.darkMode = !this.darkMode;
@@ -55,7 +56,13 @@
                     PEMERINTAH KOTA PEKANBARU
                 </span>
                 <span class="text-slate-600 hidden sm:inline">&bull;</span>
-                <span class="text-slate-300 font-medium truncate text-[11px]">Badan Penanggulangan Bencana Daerah (PUSDALOPS-PB 24/7)</span>
+                <span class="text-slate-300 font-medium truncate text-[11px] flex items-center gap-1.5">
+                    <span class="relative flex h-2 w-2 shrink-0">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                    </span>
+                    <span>PUSDALOPS-PB ONLINE 24/7 &bull; STANDAR DIBI BNPB</span>
+                </span>
             </div>
             <div class="flex items-center gap-3 text-slate-400 shrink-0">
                 <span class="flex items-center gap-1.5 text-orange-400 font-semibold text-[11px]">
@@ -93,6 +100,13 @@
 
                 <!-- NAVIGATION LINKS (DESKTOP) -->
                 <nav class="hidden lg:flex items-center gap-1 xl:gap-1.5 text-xs font-semibold shrink-0">
+                    <!-- Portal Publik Beranda -->
+                    <a href="{{ route('welcome') }}" 
+                       class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-slate-100 dark:hover:bg-slate-800/80" title="Buka Portal Depan BPBD Riau Style">
+                        <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        <span>Portal Publik</span>
+                    </a>
+
                     <!-- Geoportal Dashboard -->
                     <a href="{{ route('dashboard') }}" 
                        class="px-3 py-2 rounded-xl transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('dashboard') ? 'bg-slate-900 dark:bg-gradient-to-r dark:from-orange-500/20 dark:to-amber-500/15 text-white dark:text-orange-300 font-bold shadow-xs ring-1 ring-slate-700 dark:ring-orange-500/40' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80' }}">
@@ -262,6 +276,10 @@
                     </span>
                 </button>
             </div>
+            <a href="{{ route('welcome') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-slate-800 transition-colors">
+                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                <span>Portal Publik Utama</span>
+            </a>
             <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold {{ request()->routeIs('dashboard') ? 'bg-slate-900 dark:bg-slate-800 text-white' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800' }}">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
                 <span>Geoportal Dashboard</span>
@@ -389,6 +407,78 @@
             </div>
         </div>
     </footer>
+
+    <!-- ================= FLOATING SOS CALL 112 BUTTON (BPBD RIAU RADAR PULSE) ================= -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button type="button" 
+                @click="sosModal = true" 
+                class="group relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-red-600 via-rose-600 to-red-700 text-white font-black text-xs uppercase tracking-wider shadow-2xl shadow-red-600/50 hover:shadow-red-600/80 hover:scale-105 active:scale-95 transition-all duration-300 border-2 border-white/30 cursor-pointer">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-90"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+            </span>
+            <span class="tracking-wide">SOS CALL 112</span>
+        </button>
+    </div>
+
+    <!-- MODAL DARURAT 112 & PUSDALOPS PUSAT -->
+    <div x-cloak x-show="sosModal" 
+         @keydown.escape.window="sosModal = false"
+         class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" @click="sosModal = false"></div>
+        <div class="flex min-h-screen items-center justify-center p-4 text-center">
+            <div class="relative transform overflow-hidden rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg p-6 sm:p-8" @click.stop>
+                <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-red-100 dark:bg-red-950/80 text-red-600 dark:text-red-400 flex items-center justify-center font-black">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-black text-slate-900 dark:text-white uppercase tracking-wider">LAYANAN KEDARURATAN 24 JAM</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Pusdalops-PB BPBD Kota Pekanbaru</p>
+                        </div>
+                    </div>
+                    <button type="button" @click="sosModal = false" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="mt-6 space-y-4">
+                    <a href="tel:112" class="flex items-center justify-between p-4 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors group">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-xl bg-red-600 text-white flex items-center justify-center font-black text-lg shadow-md group-hover:scale-105 transition-transform">
+                                112
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400">Call Center Bebas Pulsa</div>
+                                <div class="text-base font-black text-slate-900 dark:text-white">Panggilan Darurat 112</div>
+                                <div class="text-[11px] text-slate-500 dark:text-slate-400">Gratis dari seluruh operator telepon</div>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1.5 rounded-xl bg-red-600 text-white font-bold text-xs uppercase group-hover:bg-red-700">Hubungi</span>
+                    </a>
+
+                    <a href="https://wa.me/628117604800?text=Halo%20PUSDALOPS%20BPBD%20Kota%20Pekanbaru,%20saya%20ingin%20melaporkan%20kejadian%20darurat:" target="_blank" class="flex items-center justify-between p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-colors group">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-md group-hover:scale-105 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">WhatsApp Pusdalops</div>
+                                <div class="text-base font-black text-slate-900 dark:text-white font-mono">0811-7604-800</div>
+                                <div class="text-[11px] text-slate-500 dark:text-slate-400">Kirim foto kejadian & live location</div>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1.5 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase group-hover:bg-emerald-700">Kirim Pesan</span>
+                    </a>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 text-center">
+                    <p class="text-xs text-slate-400">Posko Komando: Jl. Mustafa Sari No. 1, Bukit Raya, Pekanbaru</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @stack('scripts')
 </body>
