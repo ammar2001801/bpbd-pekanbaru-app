@@ -3,6 +3,45 @@
         Geoportal & Portal Data Bencana Kota Pekanbaru
     </x-slot>
 
+    <!-- ================= 0. TICKER BERITA & PERINGATAN DINI (MARQUEE) ================= -->
+    <div class="mb-5 bg-slate-950 text-white rounded-2xl border border-slate-800 overflow-hidden shadow-md flex items-center">
+        <div class="bg-gradient-to-r from-orange-600 to-amber-600 text-white font-extrabold text-[11px] uppercase tracking-wider px-3.5 py-2 flex items-center gap-2 flex-shrink-0 z-10 shadow-sm">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+            </span>
+            <span>INFO SIAGA</span>
+        </div>
+        <div class="overflow-hidden flex-1 py-1.5 cursor-default">
+            <div class="animate-bpbd-marquee flex items-center text-xs text-slate-300 font-medium">
+                <span class="mx-6 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-orange-500/20 text-orange-400 font-bold border border-orange-500/30 text-[10px]">BMKG RIAU</span>
+                    Waspada potensi hujan sedang hingga lebat disertai petir dan angin kencang di wilayah Kota Pekanbaru.
+                </span>
+                <span class="text-orange-500 font-bold">&bull;</span>
+                <span class="mx-6 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 font-bold border border-rose-500/30 text-[10px]">SATGAS KARHUTLA</span>
+                    Posko Terpadu TRC Siaga 24 Jam melakukan patroli pemantauan hotspot dan kesiapsiagaan embung air.
+                </span>
+                <span class="text-orange-500 font-bold">&bull;</span>
+                <span class="mx-6 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30 text-[10px]">CALL CENTER 112</span>
+                    Hotline bebas pulsa siaga 24/7 Pusdalops-PB Kota Pekanbaru &bull; WhatsApp Darurat: 0811-7604-800.
+                </span>
+                <!-- Duplikasi Teks untuk Infinite Loop -->
+                <span class="mx-6 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-orange-500/20 text-orange-400 font-bold border border-orange-500/30 text-[10px]">BMKG RIAU</span>
+                    Waspada potensi hujan sedang hingga lebat disertai petir dan angin kencang di wilayah Kota Pekanbaru.
+                </span>
+                <span class="text-orange-500 font-bold">&bull;</span>
+                <span class="mx-6 flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 font-bold border border-rose-500/30 text-[10px]">SATGAS KARHUTLA</span>
+                    Posko Terpadu TRC Siaga 24 Jam melakukan patroli pemantauan hotspot dan kesiapsiagaan embung air.
+                </span>
+            </div>
+        </div>
+    </div>
+
     <!-- ================= 1. HEADER GEOPORTAL ALA BNPB ================= -->
     <div class="mb-6 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden border border-slate-800">
         <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -50,6 +89,10 @@
                     <a href="{{ route('laporan.pdf-menu') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
                         <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         <span>Dokumen Resmi PDF</span>
+                    </a>
+                    <a href="{{ route('welcome') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
+                        <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        <span>Portal Publik</span>
                     </a>
                 </div>
             </div>

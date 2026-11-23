@@ -1,3 +1,84 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ================= CUSTOM ANIMATIONS FOR BPBD RIAU PORTAL ================= */
+
+/* 1. Infinite Running Marquee Ticker */
+@keyframes bpbd-marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-bpbd-marquee {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: bpbd-marquee 30s linear infinite;
+}
+
+.animate-bpbd-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* 2. Radar Pulsing Marker on Map */
+@keyframes bpbd-radar-ping {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.7);
+    }
+    70% {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 18px rgba(234, 88, 12, 0);
+    }
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(234, 88, 12, 0);
+    }
+}
+
+.radar-pulse-dot {
+    position: relative;
+    border-radius: 9999px;
+    animation: bpbd-radar-ping 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 3. Floating SOS Button Glow */
+@keyframes sos-glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px -3px rgba(234, 88, 12, 0.6), 0 0 35px -5px rgba(239, 68, 68, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px 4px rgba(234, 88, 12, 0.9), 0 0 50px 2px rgba(239, 68, 68, 0.6);
+    }
+}
+
+.animate-sos-glow {
+    animation: sos-glow-pulse 2.2s infinite ease-in-out;
+}
+
+/* 4. Smooth Slider Progress Bar */
+@keyframes slider-progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.slider-progress-bar {
+    animation: slider-progress 5s linear infinite;
+}
+
+/* 5. Shimmer Wave on Cards */
+@keyframes shimmer-move {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.hover-shimmer:hover {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer-move 1.5s infinite;
+}
+

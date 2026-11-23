@@ -11,10 +11,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-// Root redirect
-Route::get('/', function () {
-    return Auth::check() ? redirect()->route('dashboard') : redirect()->route('login');
-});
+// Root: Portal Publik Kesiapsiagaan Bencana (BPBD Riau Style)
+Route::get('/', [DashboardController::class, 'welcome'])->name('welcome');
 
 // Authenticated Routes (Semua Role: Admin, Petugas, Pimpinan)
 Route::middleware(['auth', 'role:admin,petugas,pimpinan'])->group(function () {

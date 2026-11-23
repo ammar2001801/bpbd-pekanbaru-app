@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kejadian;
 use App\Models\JenisKejadian;
 use App\Models\Kecamatan;
+use App\Models\PengaturanInstansi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -155,6 +156,77 @@ class DashboardController extends Controller
             'mapPoints',
             'kejadianTerbaru',
             'tahunTersedia',
+            'semuaJenisKejadian'
+        ));
+    }
+
+    public function welcome()
+    {
+        $pengaturan = PengaturanInstansi::getPengaturan();
+        $totalKejadian = Kejadian::count();
+        $totalDalamPenanganan = Kejadian::where('status', 'Dalam Penanganan')->count();
+        $totalSelesai = Kejadian::where('status', 'Selesai')->count();
+        
+        $totalKarhutla = Kejadian::whereHas('jenisKejadian', function ($q) {
+            $q->where('nama', 'like', '%Kebakaran%')->orWhere('nama', 'like', '%Karhutla%');
+        })->count();
+        
+        $totalBanjir = Kejadian::whereHas('jenisKejadian', function ($q) {
+            $q->where('nama', 'like', '%Banjir%');
+        })->count();
+
+        $totalLuasKarhutla = (float) Kejadian::sum('luas_terbakar_ha');
+        $totalJiwaTerdampak = (int) Kejadian::sum('jiwa_terdampak');
+        $totalPersonelTRC = (int) Kejadian::sum('jumlah_personel');
+
+        $kejadianTerbaru = Kejadian::with(['jenisKejadian', 'kecamatan', 'kelurahan', 'foto'])
+            ->latest('tanggal_kejadian')
+            ->latest('jam_kejadian')
+            ->take(6)
+            ->get();
+
+        $mapPoints = Kejadian::with(['jenisKejadian', 'kecamatan', 'kelurahan', 'foto'])
+            ->whereNotNull('latitude')
+            ->whereNotNull('longitude')
+            ->latest('tanggal_kejadian')
+            ->take(30)
+            ->get()
+            ->map(function ($k) {
+                $fotoFirst = $k->foto->first();
+                return [
+                    'id' => $k->id,
+                    'nomor' => $k->nomor_laporan,
+                    'jenis' => $k->jenisKejadian ? $k->jenisKejadian->nama : 'Bencana',
+                    'warna' => $k->jenisKejadian ? ($k->jenisKejadian->warna ?? '#EA580C') : '#EA580C',
+                    'tanggal' => Carbon::parse($k->tanggal_kejadian)->locale('id')->isoFormat('D MMM Y'),
+                    'jam' => $k->jam_kejadian ? substr($k->jam_kejadian, 0, 5) . ' WIB' : '-',
+                    'kecamatan' => $k->kecamatan ? $k->kecamatan->nama_kecamatan : '-',
+                    'kelurahan' => $k->kelurahan ? $k->kelurahan->nama_kelurahan : '-',
+                    'lokasi' => $k->lokasi_detail,
+                    'lat' => (float) $k->latitude,
+                    'lng' => (float) $k->longitude,
+                    'status' => $k->status,
+                    'luas_ha' => $k->luas_terbakar_ha ? (float) $k->luas_terbakar_ha : 0,
+                    'jiwa' => (int) $k->jiwa_terdampak,
+                    'personel' => (int) $k->jumlah_personel,
+                    'foto_url' => $fotoFirst ? asset('storage/' . $fotoFirst->path_foto) : null,
+                ];
+            });
+
+        $semuaJenisKejadian = JenisKejadian::all();
+
+        return view('welcome', compact(
+            'pengaturan',
+            'totalKejadian',
+            'totalDalamPenanganan',
+            'totalSelesai',
+            'totalKarhutla',
+            'totalBanjir',
+            'totalLuasKarhutla',
+            'totalJiwaTerdampak',
+            'totalPersonelTRC',
+            'kejadianTerbaru',
+            'mapPoints',
             'semuaJenisKejadian'
         ));
     }

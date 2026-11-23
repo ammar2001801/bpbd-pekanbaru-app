@@ -1,6 +1,14 @@
 <x-guest-layout>
     <div class="w-full max-w-md">
         
+        <!-- Back to Public Portal Link -->
+        <div class="mb-4">
+            <a href="{{ route('welcome') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-orange-600 dark:text-slate-400 dark:hover:text-orange-400 transition-colors uppercase tracking-wider">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                <span>Kembali ke Portal Publik BPBD</span>
+            </a>
+        </div>
+
         <!-- Header Brand Card -->
         <div class="text-center mb-6">
             <img src="{{ asset('images/logo-bpbd.png') }}" alt="Logo BPBD Kota Pekanbaru" class="w-20 h-20 rounded-full object-contain mx-auto mb-3 drop-shadow-xl">
