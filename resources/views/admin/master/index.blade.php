@@ -46,7 +46,7 @@
         </div>
 
         <!-- TABS NAVIGASI MASTER DATA (MODERN SEGMENTED CAPSULE) -->
-        <div class="flex items-center gap-1.5 p-1.5 bg-slate-200/70 dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 w-fit mb-6 overflow-x-auto shadow-inner">
+        <div class="flex items-center gap-1.5 p-1.5 bg-slate-200/70 dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 max-w-full w-fit mb-6 overflow-x-auto shadow-inner">
             <button @click="currentTab = 'jenis'" 
                     :class="currentTab === 'jenis' ? 'bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white shadow-md shadow-orange-500/25 font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60 font-semibold'"
                     class="px-4 py-2.5 rounded-xl text-xs transition-all duration-200 flex items-center gap-2 whitespace-nowrap cursor-pointer select-none">

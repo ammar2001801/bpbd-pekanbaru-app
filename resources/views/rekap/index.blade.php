@@ -11,56 +11,56 @@
         </div>
 
         <!-- Tombol Aksi Ekspor -->
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 w-full sm:w-auto">
             <a href="{{ route('laporan.pdf-rekap', request()->all()) }}" target="_blank"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 hover:from-blue-800 hover:via-indigo-800 hover:to-slate-800 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-900/25 hover:shadow-blue-900/40 hover:-translate-y-0.5 active:translate-y-0 border border-blue-700/40 transition-all duration-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-                <span>Cetak PDF Resmi</span>
+               class="flex-1 sm:flex-initial justify-center inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 hover:from-blue-800 hover:via-indigo-800 hover:to-slate-800 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-900/25 hover:shadow-blue-900/40 hover:-translate-y-0.5 active:translate-y-0 border border-blue-700/40 transition-all duration-200">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                <span>Cetak PDF</span>
             </a>
 
             <a href="{{ route('rekap.excel', request()->all()) }}" 
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:via-teal-500 hover:to-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:-translate-y-0.5 active:translate-y-0 border border-emerald-500/40 transition-all duration-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                <span>Ekspor Excel (.xlsx)</span>
+               class="flex-1 sm:flex-initial justify-center inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:via-teal-500 hover:to-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:-translate-y-0.5 active:translate-y-0 border border-emerald-500/40 transition-all duration-200">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <span>Ekspor Excel</span>
             </a>
         </div>
     </div>
 
     <!-- FILTER PERIODE REKAPITULASI (TAB & CONTROLS) -->
-    <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm mb-6" x-data="{ currentMode: '{{ $mode }}' }">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm mb-6" x-data="{ currentMode: '{{ $mode }}' }">
         <form method="GET" action="{{ route('rekap.index') }}" id="formRekap">
             
             <!-- Mode Selector Tabs (Modern Segmented Pill Capsule) -->
-            <div class="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-950/80 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 w-fit mb-5 overflow-x-auto shadow-inner">
-                <label class="cursor-pointer">
+            <div class="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-950/80 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 max-w-full w-fit mb-5 overflow-x-auto shadow-inner">
+                <label class="cursor-pointer shrink-0">
                     <input type="radio" name="mode" value="bulanan" x-model="currentMode" class="hidden" onchange="this.form.submit()">
                     <span :class="currentMode === 'bulanan' ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/25 font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold'"
-                          class="px-4 py-2 rounded-xl text-xs transition-all inline-block select-none">
+                          class="px-3.5 sm:px-4 py-2 rounded-xl text-xs transition-all inline-block select-none whitespace-nowrap">
                         Rekap Bulanan
                     </span>
                 </label>
 
-                <label class="cursor-pointer">
+                <label class="cursor-pointer shrink-0">
                     <input type="radio" name="mode" value="harian" x-model="currentMode" class="hidden" onchange="this.form.submit()">
                     <span :class="currentMode === 'harian' ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/25 font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold'"
-                          class="px-4 py-2 rounded-xl text-xs transition-all inline-block select-none">
+                          class="px-3.5 sm:px-4 py-2 rounded-xl text-xs transition-all inline-block select-none whitespace-nowrap">
                         Rekap Harian
                     </span>
                 </label>
 
-                <label class="cursor-pointer">
+                <label class="cursor-pointer shrink-0">
                     <input type="radio" name="mode" value="tahunan" x-model="currentMode" class="hidden" onchange="this.form.submit()">
                     <span :class="currentMode === 'tahunan' ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/25 font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold'"
-                          class="px-4 py-2 rounded-xl text-xs transition-all inline-block select-none">
+                          class="px-3.5 sm:px-4 py-2 rounded-xl text-xs transition-all inline-block select-none whitespace-nowrap">
                         Rekap Tahunan
                     </span>
                 </label>
 
-                <label class="cursor-pointer">
+                <label class="cursor-pointer shrink-0">
                     <input type="radio" name="mode" value="kustom" x-model="currentMode" class="hidden" onchange="this.form.submit()">
                     <span :class="currentMode === 'kustom' ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/25 font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold'"
-                          class="px-4 py-2 rounded-xl text-xs transition-all inline-block select-none">
-                        Rentang Tanggal Bebas
+                          class="px-3.5 sm:px-4 py-2 rounded-xl text-xs transition-all inline-block select-none whitespace-nowrap">
+                        Rentang Tanggal
                     </span>
                 </label>
             </div>

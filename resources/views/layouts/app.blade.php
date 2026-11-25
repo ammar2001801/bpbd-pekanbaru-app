@@ -49,26 +49,27 @@
       }">
 
     <!-- ================= 1. MICRO TOPBAR (GOVERNMENT BANNER) ================= -->
-    <div class="w-full bg-slate-950 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
-            <div class="flex items-center gap-2 min-w-0">
-                <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-gradient-to-r from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/30 font-bold uppercase tracking-wider text-[9px] shrink-0">
-                    PEMERINTAH KOTA PEKANBARU
+    <div class="w-full bg-slate-950 text-slate-300 text-[10px] sm:text-[11px] py-1.5 px-3 sm:px-6 lg:px-8 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-3">
+            <div class="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded-md bg-gradient-to-r from-orange-500/20 to-amber-500/20 text-orange-400 border border-orange-500/30 font-bold uppercase tracking-wider text-[8.5px] sm:text-[9px] shrink-0">
+                    <span class="sm:hidden">PEMKO PKU</span>
+                    <span class="hidden sm:inline">PEMERINTAH KOTA PEKANBARU</span>
                 </span>
                 <span class="text-slate-600 hidden sm:inline">&bull;</span>
-                <span class="text-slate-300 font-medium truncate text-[11px] flex items-center gap-1.5">
+                <span class="text-slate-300 font-medium truncate text-[10px] sm:text-[11px] flex items-center gap-1.5">
                     <span class="relative flex h-2 w-2 shrink-0">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                     </span>
-                    <span class="truncate">PUSDALOPS-PB ONLINE 24/7 &bull; STANDAR DIBI BNPB</span>
+                    <span class="truncate">PUSDALOPS-PB 24/7<span class="hidden md:inline"> &bull; STANDAR DIBI BNPB</span></span>
                 </span>
             </div>
-            <div class="flex items-center gap-3 text-slate-400 shrink-0">
-                <span class="flex items-center gap-1.5 text-orange-400 font-semibold text-[11px]">
-                    <svg class="w-3.5 h-3.5 text-orange-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                    <span>Call Center 112 / 0811-7604-800</span>
-                </span>
+            <div class="flex items-center gap-2 sm:gap-3 text-slate-400 shrink-0">
+                <a href="tel:112" class="flex items-center gap-1 sm:gap-1.5 text-orange-400 hover:text-orange-300 font-semibold text-[10px] sm:text-[11px]">
+                    <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-orange-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    <span>Call 112<span class="hidden sm:inline"> / 0811-7604-800</span></span>
+                </a>
                 <span class="hidden md:inline text-slate-700">|</span>
                 <span class="hidden md:inline font-mono text-slate-400 text-[11px]">{{ \Carbon\Carbon::now()->locale('id')->isoFormat('dddd, D MMMM Y') }}</span>
             </div>
@@ -77,22 +78,23 @@
 
     <!-- ================= 2. MAIN MODERN NAVBAR (PRESTIGIOUS DEEP NAVY BPBD RIAU STYLE) ================= -->
     <header class="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800 shadow-md text-white transition-colors duration-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="h-16 lg:h-[68px] flex items-center justify-between gap-2">
                 
                 <!-- BRAND & LOGO -->
-                <div class="flex items-center shrink-0">
+                <div class="flex items-center shrink-0 min-w-0">
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-2 group">
-                        <img src="{{ asset('images/logo-bpbd.png') }}" alt="Logo BPBD Kota Pekanbaru" class="w-9 h-9 rounded-full object-contain shrink-0 ring-2 ring-orange-500/30 group-hover:ring-orange-500/70 group-hover:scale-105 transition-all shadow-xs">
+                        <img src="{{ asset('images/logo-bpbd.png') }}" alt="Logo BPBD Kota Pekanbaru" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-contain shrink-0 ring-2 ring-orange-500/30 group-hover:ring-orange-500/70 group-hover:scale-105 transition-all shadow-xs">
                         <div class="shrink-0">
                             <div class="flex items-center gap-1 whitespace-nowrap">
-                                <span class="font-black text-[13px] xl:text-sm tracking-tight text-white group-hover:text-orange-400 transition-colors">
+                                <span class="font-black text-xs sm:text-[13px] xl:text-sm tracking-tight text-white group-hover:text-orange-400 transition-colors">
                                     SATU DATA BENCANA
                                 </span>
                                 <span class="text-[8px] font-black bg-gradient-to-r from-orange-500 to-amber-500 text-white px-1.5 py-0.5 rounded uppercase tracking-wider shadow-xs">PKU</span>
                             </div>
-                            <div class="text-[9.5px] text-slate-400 font-medium whitespace-nowrap leading-tight mt-0.5">
-                                Pusdalops-PB BPBD Kota Pekanbaru
+                            <div class="text-[9px] sm:text-[9.5px] text-slate-400 font-medium whitespace-nowrap leading-tight mt-0.5">
+                                <span class="sm:hidden">Pusdalops-PB Pekanbaru</span>
+                                <span class="hidden sm:inline">Pusdalops-PB BPBD Kota Pekanbaru</span>
                             </div>
                         </div>
                     </a>
@@ -258,54 +260,65 @@
         </div>
 
         <!-- ================= MOBILE NAVIGATION DRAWER ================= -->
-        <div x-show="mobileMenuOpen" x-cloak class="lg:hidden border-t border-slate-800 bg-slate-950 px-4 py-3 space-y-1.5 text-white">
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
-                <span class="text-xs font-semibold text-slate-400">Ganti Tema Tampilan</span>
-                <button type="button" @click="toggleTheme()" class="inline-flex items-center p-1 rounded-full bg-slate-900 border border-slate-700 shadow-inner">
+        <div x-show="mobileMenuOpen" x-cloak class="lg:hidden border-t border-slate-800 bg-slate-950 px-4 py-3.5 space-y-1.5 text-white shadow-2xl">
+            <div class="flex items-center justify-between pb-2.5 mb-2 border-b border-slate-800">
+                <div class="flex items-center gap-2 min-w-0">
+                    <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-orange-500 to-amber-500 text-white flex items-center justify-center font-bold text-[10px] shrink-0">
+                        {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                    </div>
+                    <div class="min-w-0">
+                        <div class="text-xs font-bold text-white truncate">{{ Auth::user()->name }}</div>
+                        <div class="text-[9px] text-orange-400 font-extrabold uppercase tracking-wider">{{ Auth::user()->role }}</div>
+                    </div>
+                </div>
+                <button type="button" @click="toggleTheme()" class="inline-flex items-center p-1 rounded-full bg-slate-900 border border-slate-700 shadow-inner shrink-0">
                     <span class="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
                           :class="!darkMode ? 'bg-amber-500 text-slate-950 shadow-xs' : 'text-slate-400'">
-                        <svg class="w-3 h-3 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <svg class="w-3 h-3" :class="!darkMode ? 'text-slate-950' : 'text-slate-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                         <span>Terang</span>
                     </span>
                     <span class="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold"
                           :class="darkMode ? 'bg-orange-500 text-slate-950 shadow-xs' : 'text-slate-400'">
-                        <svg class="w-3 h-3 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        <svg class="w-3 h-3" :class="darkMode ? 'text-slate-950' : 'text-slate-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
                         <span>Gelap</span>
                     </span>
                 </button>
             </div>
-            <a href="{{ route('welcome') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-slate-800 transition-colors">
-                <svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+            <a href="{{ route('welcome') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold text-orange-400 hover:bg-slate-800/80 transition-colors">
+                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                 <span>Portal Publik Utama</span>
             </a>
-            <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold {{ request()->routeIs('dashboard') ? 'bg-slate-900 dark:bg-slate-800 text-white' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800' }}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold {{ request()->routeIs('dashboard') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 border border-orange-500/40' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white' }}">
+                <svg class="w-4 h-4 shrink-0 {{ request()->routeIs('dashboard') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
                 <span>Geoportal Dashboard</span>
             </a>
-            <a href="{{ route('kejadian.index') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold {{ request()->routeIs('kejadian.index') ? 'bg-slate-900 dark:bg-slate-800 text-white' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800' }}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <a href="{{ route('kejadian.index') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold {{ request()->routeIs('kejadian.index') || request()->routeIs('kejadian.show') || request()->routeIs('kejadian.edit') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 border border-orange-500/40' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white' }}">
+                <svg class="w-4 h-4 shrink-0 {{ request()->routeIs('kejadian.index') || request()->routeIs('kejadian.show') || request()->routeIs('kejadian.edit') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 <span>Data Kejadian</span>
             </a>
-            <a href="{{ route('rekap.index') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold {{ request()->routeIs('rekap.*') ? 'bg-slate-900 dark:bg-slate-800 text-white' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800' }}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <a href="{{ route('rekap.index') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold {{ request()->routeIs('rekap.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 border border-orange-500/40' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white' }}">
+                <svg class="w-4 h-4 shrink-0 {{ request()->routeIs('rekap.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                 <span>Rekapitulasi Data</span>
             </a>
-            <a href="{{ route('laporan.pdf-menu') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold {{ request()->routeIs('laporan.*') ? 'bg-slate-900 dark:bg-slate-800 text-white' : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800' }}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <a href="{{ route('laporan.pdf-menu') }}" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold {{ request()->routeIs('laporan.*') ? 'bg-gradient-to-r from-orange-500/25 to-amber-500/20 text-orange-300 border border-orange-500/40' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white' }}">
+                <svg class="w-4 h-4 shrink-0 {{ request()->routeIs('laporan.*') ? 'text-orange-400' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                 <span>Cetak PDF Resmi</span>
             </a>
             @if(Auth::user()->isAdmin())
-                <div class="pt-2 border-t border-slate-100 dark:border-slate-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">
+                <div class="pt-2.5 mt-1 border-t border-slate-800 text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3">
                     Menu Administrasi
                 </div>
-                <a href="{{ route('admin.users.index') }}" class="block px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
-                    Manajemen Pengguna
+                <a href="{{ route('admin.users.index') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('admin.users.*') ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <span>Manajemen Pengguna</span>
                 </a>
-                <a href="{{ route('admin.master.index') }}" class="block px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
-                    Master Data & Wilayah
+                <a href="{{ route('admin.master.index') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('admin.master.*') ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+                    <span>Master Data & Wilayah</span>
                 </a>
-                <a href="{{ route('admin.pengaturan.index') }}" class="block px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800">
-                    Pengaturan Instansi
+                <a href="{{ route('admin.pengaturan.index') }}" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold {{ request()->routeIs('admin.pengaturan.*') ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    <span>Pengaturan Instansi</span>
                 </a>
             @endif
             @if(Auth::user()->role !== 'pimpinan')

@@ -75,22 +75,22 @@
                     </div>
                 </div>
 
-                <div class="mt-5 flex flex-wrap items-center gap-2.5">
+                <div class="mt-5 grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2.5">
                     @if(Auth::user()->role !== 'pimpinan')
-                    <a href="{{ route('kejadian.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:via-amber-600 hover:to-orange-700 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200 border border-orange-400/40">
+                    <a href="{{ route('kejadian.create') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-600 hover:via-amber-600 hover:to-orange-700 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200 border border-orange-400/40">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
                         <span>Input Kejadian Bencana</span>
                     </a>
                     @endif
-                    <a href="{{ route('rekap.index') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
+                    <a href="{{ route('rekap.index') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
                         <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                         <span>Rekapitulasi Data</span>
                     </a>
-                    <a href="{{ route('laporan.pdf-menu') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
+                    <a href="{{ route('laporan.pdf-menu') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
                         <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                         <span>Dokumen Resmi PDF</span>
                     </a>
-                    <a href="{{ route('welcome') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
+                    <a href="{{ route('welcome') }}" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-bold text-xs uppercase tracking-wider border border-white/15 hover:border-white/30 backdrop-blur-md shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200">
                         <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                         <span>Portal Publik</span>
                     </a>
@@ -98,7 +98,7 @@
             </div>
 
             <!-- Panel Filter Cepat (Tahun & Bulan) -->
-            <div class="bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-2xl p-4 min-w-[280px]">
+            <div class="bg-slate-900/80 backdrop-blur-md border border-white/10 rounded-2xl p-4 w-full lg:w-auto lg:min-w-[280px]">
                 <div class="text-[11px] font-bold text-orange-400 uppercase tracking-wider mb-2.5 flex items-center justify-between">
                     <span>Filter Periode Analisis</span>
                     <span>Tahun {{ $selectedTahun }}</span>
@@ -334,10 +334,10 @@
 
         <!-- Container Peta Leaflet Utama -->
         <div class="relative">
-            <div id="dashboardMap" class="w-full h-[460px] sm:h-[520px] z-10"></div>
+            <div id="dashboardMap" class="w-full h-[340px] sm:h-[460px] lg:h-[520px] z-10"></div>
 
-            <!-- Floating Map Legend Box (Pojok Kanan Bawah) -->
-            <div class="absolute bottom-4 right-4 z-[400] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl p-3.5 shadow-xl border border-slate-200/80 dark:border-slate-800 max-w-[220px] text-xs">
+            <!-- Floating Map Legend Box (Pojok Kanan Bawah - Hidden di HP agar tidak menutupi peta) -->
+            <div class="hidden sm:block absolute bottom-4 right-4 z-[400] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl p-3.5 shadow-xl border border-slate-200/80 dark:border-slate-800 max-w-[220px] text-xs">
                 <div class="font-bold text-slate-800 dark:text-white text-[11px] uppercase tracking-wider mb-2 border-b border-slate-100 dark:border-slate-800 pb-1.5 flex items-center justify-between">
                     <span>Legenda Spasial</span>
                     <span class="text-[10px] text-slate-400">WebGIS</span>
